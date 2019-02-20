@@ -1,2 +1,2 @@
-# aqua_app
+# AquaApp
 Aquarium with two types of fish.
