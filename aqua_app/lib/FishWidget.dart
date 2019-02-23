@@ -1,39 +1,40 @@
+import 'package:aqua_app/AquariumAnalizer.dart';
 import 'package:aqua_app/Fish.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
 
-class AnimatedFishWidget extends AnimatedWidget{
 
-  static const Duration DEFAULT_DURATION = const Duration(days: 1);
-  AnimationController controller;
+class FishWidget extends StatelessWidget{
 
-  static Animation<double> _getAnimation(AnimationController controller){
-    return new Tween(begin: -200.0, end: 25.0).animate(controller);
-  }
+  Fish curFish;
 
-  Fish fish;
-
-  AnimatedFishWidget( {
+  FishWidget( {
     Key key,
-    @required this.fish,
-    @required this.controller,
-  }) : assert(controller != null),
-        super(key: key, listenable: _getAnimation(controller));
-
-  Animation<double> get animation => listenable;
+    @required this.curFish,
+  });
 
   @override
   Widget build(BuildContext context) {
 
-    fish.checkAndPushOffFromBorder();
-    fish.nextPosition();
+    curFish.checkAndPushOffFromBorder();
+    curFish.nextPosition();
 
-
+    var dx = pi;
+    if (curFish.direction.horizDirection <= 0){
+      dx = 0;
+    }
     return new Positioned(
-        bottom: fish.position.y, left: fish.position.x,
+        bottom: curFish.position.y, left: curFish.position.x,
         child: Container(
-          height: fish.getContainerHeight(),
-          width: fish.getContainerWidth(),
-          color: fish.getColor(),
+          height: curFish.getContainerHeight(),
+          width: curFish.getContainerWidth(),
+          child: Transform(
+            transform: Matrix4.identity()
+              ..rotateX(0)
+              ..rotateY(dx),
+            alignment: FractionalOffset.center,
+            child: Image.asset(curFish.isGrassEating ? "img/grass_fish.png" : "img/fish_eating.png"),
+          )
         )
     );
   }

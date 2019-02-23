@@ -1,6 +1,7 @@
 
 import 'dart:math';
 
+import 'package:aqua_app/Settings.dart';
 import 'package:flutter/material.dart';
 
 class Fish {
@@ -12,35 +13,33 @@ class Fish {
     size = 1 + random.nextInt(5);
     speed = 1 / size;
     aquariumBorders = maxSize;
+    isGrassEating = random.nextInt(2) == 0;
 
-    while(true){
+    do{
       position = new Position(random.nextDouble() * maxSize.width, random.nextDouble() * maxSize.height);
-      if (!checkCrossHorizontalBorders() && !checkCrossVerticalBorders()){
-        break;
-      }
     }
+    while(checkCrossHorizontalBorders() || checkCrossVerticalBorders());
 
   }
 
 
 
 
-  static const double proportions = 1/2;
-  static const Map sizeToColor = {
-    1 : Colors.green,
-    2 : Colors.yellow,
-    3 : Colors.orange,
-    4 : Colors.red,
-    5 : Colors.purpleAccent
-  };
-  static const double FISH_SIZE_CONST = 20.0;
-
   Position position;
   int size;
   double speed;
   Direction direction;
   Size aquariumBorders;
+  bool isGrassEating;
 
+  getCenterPoint(){
+    return Point<double>(position.x + getContainerWidth() / 2, position.y + getContainerHeight() / 2);
+  }
+
+
+  getRadius(){
+    return sqrt(getContainerHeight() * getContainerHeight() + getContainerWidth() * getContainerWidth()) / 3;
+  }
 
   getRandomSign(){
     Random random = new Random();
@@ -49,16 +48,13 @@ class Fish {
   }
 
   getContainerHeight(){
-    return size * Fish.FISH_SIZE_CONST * Fish.proportions;
+    return size * Settings.FISH_SIZE_CONST * Settings.proportions;
   }
 
   getContainerWidth(){
-    return size * Fish.FISH_SIZE_CONST;
+    return size * Settings.FISH_SIZE_CONST;
   }
 
-  getColor() {
-    return sizeToColor[size];
-  }
 
   nextPosition(){
     Position cur = position;
@@ -82,6 +78,12 @@ class Fish {
       direction.vertDirection = - direction.vertDirection;
     }
 
+  }
+
+
+  void setSize() {
+    size +=1;
+    speed = 1 / size;
   }
 
 }
