@@ -1,6 +1,5 @@
 import 'package:aqua_app/Settings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_counter/flutter_counter.dart';
 
 class SettingsPage extends StatefulWidget {
 

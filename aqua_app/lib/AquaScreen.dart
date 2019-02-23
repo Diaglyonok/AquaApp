@@ -1,11 +1,6 @@
-import 'dart:math';
-
-import 'package:aqua_app/AquariumAnalizer.dart';
 import 'package:aqua_app/AquariumWidget.dart';
-import 'package:aqua_app/Settings.dart';
-import 'package:aqua_app/Fish.dart';
-import 'package:aqua_app/FishWidget.dart';
 import 'package:aqua_app/Population.dart';
+import 'package:aqua_app/Settings.dart';
 import 'package:aqua_app/SettingsPage.dart';
 import 'package:flutter/material.dart';
 

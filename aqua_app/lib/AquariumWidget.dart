@@ -2,7 +2,6 @@ import 'package:aqua_app/AquariumAnalizer.dart';
 import 'package:aqua_app/Fish.dart';
 import 'package:aqua_app/FishWidget.dart';
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 
 class AquariumWidget extends AnimatedWidget{

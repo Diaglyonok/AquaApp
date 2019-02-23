@@ -1,7 +1,7 @@
-import 'package:aqua_app/AquariumAnalizer.dart';
+import 'dart:math';
+
 import 'package:aqua_app/Fish.dart';
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 
 class FishWidget extends StatelessWidget{

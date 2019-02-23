@@ -1,8 +1,5 @@
-import 'dart:math';
-
-import 'package:aqua_app/AquaScreen.dart';
-import 'package:aqua_app/Settings.dart';
 import 'package:aqua_app/Fish.dart';
+import 'package:aqua_app/Settings.dart';
 import 'package:flutter/material.dart';
 
 class Population {
