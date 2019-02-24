@@ -1,6 +1,6 @@
 class Settings {
   static double PROPORTIONS = 1;
-  static int FISH_SIZE_CONST = 30;
+  static int FISH_SIZE_CONST = 40;
   static int NUM_OF_FISH = 10;
   static Duration DEFAULT_DURATION = const Duration(days: 365);
   static int TIME_TO_REBORN = 60;
