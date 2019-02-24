@@ -1,7 +1,7 @@
-import 'package:aqua_app/AquariumWidget.dart';
-import 'package:aqua_app/Population.dart';
-import 'package:aqua_app/Settings.dart';
-import 'package:aqua_app/SettingsPage.dart';
+import 'package:aqua_app/views/aquarium/AquariumWidget.dart';
+import 'package:aqua_app/models/Population.dart';
+import 'package:aqua_app/constants/Settings.dart';
+import 'package:aqua_app/views/settings/SettingsPage.dart';
 import 'package:flutter/material.dart';
 
 class AquaScreen extends StatefulWidget {
@@ -16,6 +16,7 @@ class _AquaScreenState extends State<AquaScreen> with TickerProviderStateMixin {
 
   Population population;
   AnimationController controller;
+  bool generateNew = true;
 
   @override
   void initState() {
@@ -28,13 +29,22 @@ class _AquaScreenState extends State<AquaScreen> with TickerProviderStateMixin {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
 
     Size size = MediaQuery.of(context).size;
-    population.setScreenSize(size);
-    population.createRandomPopulation(size);
+
+    if( generateNew || population == null){
+      population.setScreenSize(size);
+      population.createRandomPopulation(size);
+    }
+
 
     return Stack(
       children: <Widget>[
@@ -79,6 +89,7 @@ class _AquaScreenState extends State<AquaScreen> with TickerProviderStateMixin {
               ),
               onTap: (){
                 setState(() {
+                  generateNew = true;
                   controller.forward(from: 0.0);
                 });
               },
@@ -108,6 +119,7 @@ class _AquaScreenState extends State<AquaScreen> with TickerProviderStateMixin {
         }
     )).then((_){
       setState(() {
+        generateNew = false;
         controller.forward(from: 0.0);
       });
     });

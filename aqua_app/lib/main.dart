@@ -1,4 +1,4 @@
-import 'package:aqua_app/AquaScreen.dart';
+import 'package:aqua_app/views/aquarium/AquaScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -15,9 +15,10 @@ class MyApp extends StatelessWidget {
     ]);
 
     return new MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Aquarium App',
       theme: new ThemeData(
-        accentColor: Colors.cyanAccent,
+        accentColor: Colors.teal,
         primarySwatch: Colors.cyan, 
       ),
       home: new AquaScreen(),

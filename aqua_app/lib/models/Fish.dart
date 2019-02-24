@@ -1,7 +1,7 @@
 
 import 'dart:math';
 
-import 'package:aqua_app/Settings.dart';
+import 'package:aqua_app/constants/Settings.dart';
 import 'package:flutter/material.dart';
 
 class Fish {
@@ -10,10 +10,11 @@ class Fish {
     Random random = new Random();
 
     direction = new Direction(getRandomSign() * (1 + random.nextInt(10)), getRandomSign() * (1 + random.nextInt(10)));
-    size = 1 + random.nextInt(5);
-    speed = 1 / size;
+    size = 1 + random.nextInt(6) * 0.2;
+    speed = 1 / size * Settings.SPEED_OF_FISH;
     aquariumBorders = maxSize;
     isGrassEating = random.nextInt(2) == 0;
+    alive = true;
 
     do{
       position = new Position(random.nextDouble() * maxSize.width, random.nextDouble() * maxSize.height);
@@ -26,11 +27,12 @@ class Fish {
 
 
   Position position;
-  int size;
+  double size;
   double speed;
   Direction direction;
   Size aquariumBorders;
   bool isGrassEating;
+  bool alive;
 
   getCenterPoint(){
     return Point<double>(position.x + getContainerWidth() / 2, position.y + getContainerHeight() / 2);
@@ -48,13 +50,16 @@ class Fish {
   }
 
   getContainerHeight(){
-    return size * Settings.FISH_SIZE_CONST * Settings.proportions;
+    return size * Settings.FISH_SIZE_CONST * Settings.PROPORTIONS;
   }
 
   getContainerWidth(){
     return size * Settings.FISH_SIZE_CONST;
   }
 
+  refreshSpeed(){
+    speed = 1 / size * Settings.SPEED_OF_FISH;
+  }
 
   nextPosition(){
     Position cur = position;
@@ -62,11 +67,11 @@ class Fish {
   }
 
   checkCrossHorizontalBorders(){
-    return position.x + getContainerWidth() > aquariumBorders.width || position.x < 0;
+    return checkCrossLeft() || checkCrossRight();
   }
 
   checkCrossVerticalBorders(){
-    return position.y + getContainerHeight() > aquariumBorders.height || position.y < 0;
+    return checkCrossTop() || checkCrossBottom();
   }
 
   checkAndPushOffFromBorder(){
@@ -81,11 +86,44 @@ class Fish {
   }
 
 
-  void setSize() {
-    size +=1;
-    speed = 1 / size;
+  void addSize() {
+
+    size += 0.2;
+    speed = 1 / size * Settings.SPEED_OF_FISH;
+
+    if (checkCrossTop()){
+      position.y -= (position.y + getContainerHeight() - aquariumBorders.height + 5.0);
+    }
+    if (checkCrossBottom()){
+      position.y -= (position.y - 5.0);
+    }
+    if (checkCrossLeft()){
+      position.x -= (position.x - 5.0);
+    }
+    if (checkCrossRight()){
+      position.x -= (position.x + getContainerWidth() - aquariumBorders.width + 5.0);
+    }
+    if (size > 5){
+      alive = false;
+    }
   }
 
+
+  checkCrossRight(){
+    return position.x + getContainerWidth() > aquariumBorders.width;
+  }
+
+  checkCrossLeft(){
+    return position.x < 0;
+  }
+
+  checkCrossTop(){
+    return position.y + getContainerHeight() > aquariumBorders.height;
+  }
+
+  checkCrossBottom(){
+    return position.y < 0;
+  }
 }
 
 

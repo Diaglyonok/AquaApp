@@ -1,6 +1,7 @@
-import 'package:aqua_app/AquariumAnalizer.dart';
-import 'package:aqua_app/Fish.dart';
-import 'package:aqua_app/FishWidget.dart';
+import 'package:aqua_app/models/Fish.dart';
+import 'package:aqua_app/observer/AquariumAnalizer.dart';
+import 'package:aqua_app/views/aquarium/FishWidget.dart';
+import 'package:aqua_app/constants/Settings.dart';
 import 'package:flutter/material.dart';
 
 
@@ -47,6 +48,13 @@ class AquariumWidget extends AnimatedWidget{
       res.add(
           FishWidget(
             curFish: f,
+            onTap: (){
+              if (!Settings.KILL_FISH_ON_TAP){
+                return;
+              }
+
+              analyzer?.killFish(f);
+            },
           )
       );
     });
