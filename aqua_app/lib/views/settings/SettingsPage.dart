@@ -35,7 +35,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       padding: EdgeInsets.only(top: 10.0),
                       child: Material(
                         type: MaterialType.transparency,
-                        child: Text("Изменяются моментально, без обновления:", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                        child: Text("Change instantly, without updating:", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                       ),
                     ),
 
@@ -53,7 +53,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           Settings.SPEED_OF_FISH -= 0.5;
                         });
                       },
-                      text: "Скорость рыб: ",
+                      text: "Fish speed: ",
                     ),
 
                     CounterItem(
@@ -74,11 +74,11 @@ class _SettingsPageState extends State<SettingsPage> {
                           Settings.FISH_SIZE_CONST -= 1;
                         });
                       },
-                      text: "Размер рыб: ",
+                      text: "Fish size: ",
                     ),
 
                     CheckBoxItem(
-                        text: 'При нажатии на рыбку, убивать ее: ',
+                        text: 'When you click on a fish, kill it: ',
                         checkboxFunc: (val){
                           setState(() => Settings.KILL_FISH_ON_TAP = val);
                         },
@@ -86,7 +86,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
 
                     CheckBoxItem(
-                        text: 'Разрешить рост при поедании: ',
+                        text: 'Allow to grow when eating other fish: ',
                         checkboxFunc: (val){
                           setState(() => Settings.ALLOW_GROWING = val);
                         },
@@ -109,7 +109,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
                         setState(() => Settings.MAX_GROW_SIZE += 1);
                       },
-                      text: "Рыба умрет при коэфициенте роста выше, чем: ",
+                      text: "The fish will die at a growth rate higher than: ",
                     ) : Container(),
 
 
@@ -117,7 +117,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       padding: EdgeInsets.only(top: 10.0),
                       child: Material(
                         type: MaterialType.transparency,
-                        child: Text("Изменяются после обновления экрана:", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                        child: Text("Change after screen refresh:", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                       ),
                     ),
 
@@ -135,14 +135,14 @@ class _SettingsPageState extends State<SettingsPage> {
                           Settings.NUM_OF_FISH -= 1;
                         });
                       },
-                      text: "Количество рыб: ",
+                      text: "Number of fish: ",
                     ),
 
                     Padding(
                       padding: EdgeInsets.only(top: 10.0),
                       child: Material(
                         type: MaterialType.transparency,
-                        child: Text("Применяется для всех заново созданных рыб:", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                        child: Text("Applies to all newly created fish.:", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                       ),
                     ),
 
@@ -160,7 +160,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           Settings.TIME_TO_REBORN -= 1;
                         });
                       },
-                      text: "Время перерождения (сек): ",
+                      text: "Transformation time (sec): ",
                     ),
 
 
@@ -174,7 +174,7 @@ class _SettingsPageState extends State<SettingsPage> {
             child: AppBar(
               elevation: 0.0,
               backgroundColor: Colors.transparent,
-              title: new Text('Настройки'),
+              title: new Text('Settings'),
             ),
           )
         ],
