@@ -8,6 +8,7 @@ Yellow fish - predators, blue fish - herbivores.
 
 # Settings screen
 Rich settings abiliies. 
+
 English language:
 ![ScreenShot](https://github.com/Diaglyonok/AquaApp/blob/master/settings_en.jpg)
 
